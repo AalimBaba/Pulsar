@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recursion Echo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      overflow: hidden;
+      background: #000;
+      font-family: 'Courier New', monospace;
+    }
+    
+    #gameCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+    
+    #hud {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      color: #00ff88;
+      font-size: 14px;
+      text-shadow: 0 0 10px #00ff88;
+      z-index: 100;
+      pointer-events: none;
+    }
+    
+    #hud div {
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    
+    #hud .label {
+      color: #00aaff;
+      margin-right: 10px;
+    }
+    
+    #hud .value {
+      color: #00ff88;
+      font-weight: bold;
+    }
+    
+    #hud .warning {
+      color: #ff4444;
+      animation: flash 0.5s infinite;
+    }
+    
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    
+    #gameOver {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.9);
+      border: 2px solid #ff4444;
+      padding: 40px;
+      text-align: center;
+      display: none;
+      z-index: 200;
+    }
+    
+    #gameOver h1 {
+      color: #ff4444;
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px #ff4444;
+    }
+    
+    #gameOver p {
+      color: #00ff88;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    
+    #restartBtn {
+      background: transparent;
+      border: 2px solid #00ff88;
+      color: #00ff88;
+      padding: 12px 30px;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    #restartBtn:hover {
+      background: #00ff88;
+      color: #000;
+      box-shadow: 0 0 20px #00ff88;
+    }
+    
+    #controls {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      color: #666;
+      font-size: 12px;
+      z-index: 100;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  
+  <div id="hud">
+    <div><span class="label">LEVEL:</span><span class="value" id="level">1</span></div>
+    <div><span class="label">HEALTH:</span><span class="value" id="health">100</span></div>
+    <div><span class="label">TIME LOOP:</span><span class="value" id="timeLoop">0%</span></div>
+    <div><span class="label">ACTIVE ECHOES:</span><span class="value" id="echoes">0</span></div>
+    <div><span class="label">SCORE:</span><span class="value" id="score">0</span></div>
+  </div>
+  
+  <div id="gameOver">
+    <h1>TEMPORAL COLLAPSE</h1>
+    <p>Your timeline has fragmented.</p>
+    <button id="restartBtn">REINITIALIZE LOOP</button>
+  </div>
+  
+  <div id="controls">
+    WASD/Arrows: Move | Mouse: Aim | Space: Fire | E: Create Echo
+  </div>
+  
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
